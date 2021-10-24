@@ -1,43 +1,36 @@
 import os
-bool = True
-bank = 100
-pin = 1234
-while bool:
-    print("="*20)
-    print("[1] Withdraw amount")
-    print("[2] Deposit amount")
-    print("[3] Inquire balance amount")
-    print("[4] quit")
-    print('[5 Change Pin')
-    print("="*20)
-    a = int(input('-> '))
-    if a == 1:
-        cpin = int(input("your pin: "))
-        if cpin==pin:
-            money = int(input("amount: "))
-            if money > bank:
-                print('cannot Withdraw')
-            else:
-                bank -= money
-            print(f"your acquired money is {bank}")
-        else:
-            print('failed')
-       
-    if a == 4:
-        print('+'*20)
-        print("you quitted the service.")
-        print('+'*20)
-        break
-    if a== 3:
-        cpin = int(input('pin: ')) 
-        if cpin == pin:
-            print("+"*20)
-            print(f"Balance: {bank}")
-            print("+"*20)
-        else:
-            print('failed')
-    if a==5:
-        print("+"*20)
-        pin = int(input('change pin: '))
-        print("+"*20)
-        os.system('clear')
+from getpass import getpass as gp
+db = {}
+def account():
+    print('+'*20)
+    print('welcome to account creation [!]')
+    print('+'*20)
+    name = str(input('Please input your name: '))
+    pin = str(input('Your 4 digit pin: '))
+    if len(pin) != 4:
+        print("[!] Pin must be consist of 4 not less than or bigger")
+        account()
+    else:
+        print('[!] Succesfully created account')
+        db[pin] = name
+        main()
+def bank():
+    name = db[pin]
+    print('='*20)
+    print(f'[!] Welcome {name}')
+    print('='*20)
+    
+def main():
+    os.system('clear')
+    print('='*20)
+    print('welccome to the bank!')
+    print('='*20)
+    val = gp("pin: ")
+    if val not in db:
+        print("do u want to create account?\n[yes / no]")
+        chk = str(input('==> '))
+        if chk == 'y':
+            account()
+    else:
+        bank()
+main()
