@@ -19,6 +19,8 @@ int main(){
   int cons, vowel, digit, spec;
   char a[80];
   char vow[5] = { 'a', 'e', 'i', 'o', 'u' };
+	
+  printf("enter a sentence: ");
   fgets(a, 80, stdin);
   
   for (int i = 0; i < strlen (a); i++){
