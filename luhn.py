@@ -1,7 +1,7 @@
 # own answer in luhn's alogorithm
 
 def check_luhn(num):
-    num = list(str(num))
+    num = list(str(num))[::-1]
     luhn,norm = 0,0
 
     for i,n in enumerate(num):
